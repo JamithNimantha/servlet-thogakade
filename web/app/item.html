@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Item Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../js/bootstrap.min.js">
+    <link rel="icon" href="../images/icons8-star-of-bethlehem-48.png" type="image/x-icon">
+
+
+</head>
+<body>
+<!--navigation bar-->
+<nav class="navbar navbar-expand-lg navbar-light"
+     style="background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);">
+    <a class="navbar-brand" href="#">
+
+    </a>
+
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/app/dashboard.html" style="color: #6D4C41;font-size:large;font-weight: bold;"><img
+                        src="../images/home.png">
+                    <H>HOME</H>
+                    <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/app/customer.html" style="font-weight: bold;font-size:large;color: #6D4C41"><img
+                        src="../images/add-user-group-man-man.png">CUSTOMER MANAGEMENT</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/app/item.html" style="color: #6D4C41;font-size:large;font-weight: bold"><img
+                        src="../images/banana-split.png">ITEM MANAGEMENT</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/app/order.html"
+                   style="color: #6D4C41;font-size:large;font-weight: bold"><img
+                        src="../images/pressure.png">PLACE ORDER</a>
+        </ul>
+    </div>
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Type Here..." aria-label="Search">
+        <button class="btn btn-primary" type="submit" style="background-color: saddlebrown;border: none">Search</button>
+    </form>
+</nav>
+<!--Place-->
+<nav aria-label="breadcrumb" style="margin-top: 10px;">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Item</li>
+    </ol>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-6">
+            <div class="btn-group mt-2" style="float: right">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">New Item
+                </button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color: blue;color: white">
+                                <h5 class="modal-title" id="exampleModalLabel">New Item</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Code</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail"
+                                               aria-describedby="emailHelp" placeholder="Item Code">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Name</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail"
+                                               aria-describedby="emailHelp" placeholder="Item Name">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Description</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail"
+                                               aria-describedby="emailHelp" placeholder="Item Description">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Unit Price</label>
+                                        <input type="number" class="form-control" id="exampleInputEmail1"
+                                               aria-describedby="emailHelp" placeholder="Item Price">
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">QTY</label>
+                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                               placeholder="Quantity">
+                                    </div>
+
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <button type="button" class="btn btn-danger">View All</button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!--<div>-->
+        <!--<div style="margin-top: 50px;text-align: left;display: block" class="ml-4">-->
+            <!--<div class="btn-group bgrp">-->
+                <!--<button id="delBuCu" type="button" class="btn btn-danger">Delete</button>-->
+                <!--<button type="button" id="cusE" class="btn btn-warning">Edit</button>-->
+                <!--<button type="button" id="cusD" class="btn btn-info">Details</button>-->
+                <!--<button class="btn btn-success">Clear</button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--First row-->
+    <div class="row">
+        <div class="container-fluid" style="margin-top: 50px">
+            <div class=col>
+                <table class="table">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Code</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Unit Price</th>
+                        <th scope="col">QTY On Hand</th>
+                        <th scope="col">#</th>
+                        <th scope="col">#</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+                    </tbody>
+                </table>
+
+
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src=../js/jquery-3.4.1.min.js></script>
+<script src=../js/bootstrap.min.js></script>
+</body>
+</html>
