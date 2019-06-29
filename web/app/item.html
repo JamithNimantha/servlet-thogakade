@@ -5,7 +5,7 @@
     <title>Item Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../js/bootstrap.min.js">
+    <link rel="script" href="../js/bootstrap.min.js">
     <link rel="icon" href="../images/icons8-star-of-bethlehem-48.png" type="image/x-icon">
 
 
@@ -17,7 +17,6 @@
     <a class="navbar-brand" href="#">
 
     </a>
-
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,35 +75,36 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form id="itemForm" method="post" action="/app/item">
+                                    <input type="hidden" name="_METHOD" value="POST"/>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Code</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail"
+                                        <input name="code" type="text" class="form-control" id="exampleInputEmail"
                                                aria-describedby="emailHelp" placeholder="Item Code">
 
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Name</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail"
+                                        <input name="name" type="text" class="form-control" id="exampleInputEmail"
                                                aria-describedby="emailHelp" placeholder="Item Name">
 
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Description</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail"
+                                        <input name="description" type="text" class="form-control" id="exampleInputEmail"
                                                aria-describedby="emailHelp" placeholder="Item Description">
 
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Unit Price</label>
-                                        <input type="number" class="form-control" id="exampleInputEmail1"
+                                        <input name="price" type="number" class="form-control" id="exampleInputEmail1"
                                                aria-describedby="emailHelp" placeholder="Item Price">
 
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">QTY</label>
-                                        <input type="number" class="form-control" id="exampleInputPassword1"
+                                        <input name="qty" type="number" class="form-control" id="exampleInputPassword1"
                                                placeholder="Quantity">
                                     </div>
 
@@ -113,14 +113,14 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="button" onclick="saveItem()" class="btn btn-primary">Save changes</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
 
-                <button type="button" class="btn btn-danger">View All</button>
+                <button id="viewAllItems" type="button" class="btn btn-danger">View All</button>
 
             </div>
 
@@ -128,23 +128,10 @@
         </div>
 
     </div>
-
-    <!--<div>-->
-        <!--<div style="margin-top: 50px;text-align: left;display: block" class="ml-4">-->
-            <!--<div class="btn-group bgrp">-->
-                <!--<button id="delBuCu" type="button" class="btn btn-danger">Delete</button>-->
-                <!--<button type="button" id="cusE" class="btn btn-warning">Edit</button>-->
-                <!--<button type="button" id="cusD" class="btn btn-info">Details</button>-->
-                <!--<button class="btn btn-success">Clear</button>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
-    <!--First row-->
     <div class="row">
         <div class="container-fluid" style="margin-top: 50px">
             <div class=col>
-                <table class="table">
+                <table id="tblItem" class="table">
                     <thead class="thead-light">
                     <tr>
                         <th scope="col">Code</th>
@@ -162,10 +149,6 @@
 
                     </tbody>
                 </table>
-
-
-                </tbody>
-                </table>
             </div>
         </div>
     </div>
@@ -174,5 +157,43 @@
 
 <script src=../js/jquery-3.4.1.min.js></script>
 <script src=../js/bootstrap.min.js></script>
+<script>
+    $(document).on("click", "#viewAllItems", function() {
+        viewAll();
+    });
+
+    $(document).ready(function () {
+        viewAll();
+    });
+
+    function saveItem() {
+        var data = $("#itemForm").serialize();
+        $.post("/app/item", data)
+            .done(function(data) {
+                alert("New Item Added");
+                viewAll();
+            }).fail(function () {
+            alert("Error Occurred !");
+        });
+
+        viewAll();
+    }
+
+    function viewAll() {
+        $.get("/app/item", function(responseJson) {
+            $("#tblItem tbody").empty();
+            $.each(responseJson, function(index, item) {
+                $("<tr>").appendTo($("#tblItem"))
+                    .append($("<td>").text(item.code))
+                    .append($("<td>").text(item.name))
+                    .append($("<td>").text(item.description))
+                    .append($("<td>").text(item.price))
+                    .append($("<td>").text(item.qty))
+                    .append($("<td>").append("<button class='btn btn-warning'>Edit</button>"))
+                    .append($("<td>").append("<button class='btn btn-danger'>Remove</button>"));
+            });
+        });
+    }
+</script>
 </body>
 </html>
